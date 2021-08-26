@@ -6,17 +6,20 @@ const numInp = document.querySelector(".num-input");
 const changeTab = document.querySelector(".change-tab")
 // console.log(inputEl)
 function changeInp() {
-    tabContent.textContent = ""
-    let createP = document.createElement("p");
-    tabWrap.appendChild(createP);
 
     let inVal = numInp.value;
     if (inVal === inputEl[0].value) {
-        createP.textContent = inputEl[0].id + " content";
+        inputEl[1].checked = false
+        inputEl[2].checked = false
+        tabContent.textContent = `${inputEl[0].id}`
     } if (inVal === inputEl[1].value) {
-        createP.textContent = inputEl[1].id + " content";
+        inputEl[0].checked = false
+        inputEl[2].checked = false
+        tabContent.textContent = `${inputEl[1].id}`
     } if (inVal === inputEl[2].value) {
-        createP.textContent = inputEl[2].id + " content";
+        inputEl[0].checked = false
+        inputEl[1].checked = false
+        tabContent.textContent = `${inputEl[2].id}`
     }
 }
 
@@ -27,14 +30,11 @@ changeTab.addEventListener("click", changeInp);
 
 tabName.addEventListener("input", function (e) {
     const target = e.target;
-    console.log(target)
     if (target && target.type) {
         inputEl.forEach(item => {
             if (target == item) {
                 tabContent.textContent = ""
-                let createP = document.createElement("p");
-                tabWrap.appendChild(createP);
-                createP.textContent = target.id + " content"
+                tabContent.textContent = `${target.id} ` + " content"
             }
         });
     }
